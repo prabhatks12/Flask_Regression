@@ -1,0 +1,25 @@
+{% extends "bootstrap/base.html "%}
+
+{% block body %}
+
+<link href="{{ url_for('static',filename='style.css') }}" rel="stylesheet" type="text/css" />
+
+<div class="cols-sm-12">
+<div class="col-sm-4"></div>
+<div class="col-sm-4">
+
+    <form action = "data" method = "POST">
+        <label for="path">Enter Path of CSV </label><br>
+        <input type="text" name="path"><br>
+        <input type="submit" name="button" value="Submit" class="btn-primary center">
+    </form>
+
+</div>
+
+<div class="col-sm-4"></div>
+
+{% block content %}{% endblock %}
+
+</div>
+
+{% endblock %}
