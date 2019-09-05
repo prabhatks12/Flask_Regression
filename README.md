@@ -29,4 +29,4 @@ python app.py
 flask run
 ```
 
-![Alt text](/static/plots/Screenshot from 2019-09-05 13-04-52.png "Optional title")
+![Alt text](/static/plots/Screenshot from 2019-09-05 13-04-52.png?raw=true "Optional title")
