@@ -8,10 +8,11 @@ import matplotlib.pyplot as plot
 import os
 from sklearn.tree import DecisionTreeRegressor
 from sklearn.ensemble import RandomForestRegressor
+from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 
 
 app=Flask(__name__)
-bootstrap=Bootstrap(app)
+Bootstrap(app)
 
 app.config['SECRET_KEY']="MY_KEY"
 
@@ -36,7 +37,10 @@ def result():
     if(request.method=='POST'):
         X,Y=request.form.getlist('X'),request.form.getlist('Y')
         data=pd.read_csv(session['path'])
+        data.dropna()
         x,y=data[X],data[Y]
+        #for label Encoder
+        x,y=Encoder(x,y,X,Y)
         x_train,x_test,y_train,y_test=train_test_split(x,y)
         return render_template('result.html',paramters=[linear_regressor(x_train,y_train),random_forest(x_train,y_train),decision_tree(x_train,y_train)])
     else:
@@ -71,6 +75,20 @@ def plot_graph(x_train,y_train,regressor,name):
     if(os.path.exists('static/plots/'+name+'.png')):
         os.remove('static/plots/'+name+'.png')
     plot.savefig('static/plots/'+name+'.png')
+
+def Encoder(x,y,X,Y):
+    for i,r in enumerate(x.dtypes):
+        if(r!=np.int64):
+            print(i)
+            x[X[i]]=LabelEncoder().fit_transform(x[X[i]])
+
+    for i,r in enumerate(y.dtypes):
+        if(r!=np.int64):
+            print(i)
+            y[Y[i]]=LabelEncoder().fit_transform(y[Y[i]])
+    return x,y
+
+
 
 
 if(__name__=='__main__'):
