@@ -29,4 +29,4 @@ python app.py
 flask run
 ```
 
-![Alt text](https://github.com/prabhatks12/Flask_Regression/blob/master/static/plots/Screenshot%20from%202019-09-05%2013-04-52.png "ScreenShot")
+![Alt text](/Flask_Regression/blob/master/static/plots/Screenshot%20from%202019-09-05%2013-04-52.png "ScreenShot")
