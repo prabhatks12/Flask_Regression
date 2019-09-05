@@ -11,7 +11,7 @@ from sklearn.ensemble import RandomForestRegressor
 
 
 app=Flask(__name__)
-Bootstrap(app)
+bootstrap=Bootstrap(app)
 
 app.config['SECRET_KEY']="MY_KEY"
 
@@ -38,7 +38,6 @@ def result():
         data=pd.read_csv(session['path'])
         x,y=data[X],data[Y]
         x_train,x_test,y_train,y_test=train_test_split(x,y)
-        print(x_train)
         return render_template('result.html',paramters=[linear_regressor(x_train,y_train),random_forest(x_train,y_train),decision_tree(x_train,y_train)])
     else:
         return render_template('parameters.html')
