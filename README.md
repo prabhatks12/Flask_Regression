@@ -1,7 +1,7 @@
 ## Regression in Flask
 Applying all regression techniques on the csv and telling which one is the best
 
-'''bash
+```bash
 
 #installing virutal environment
 
@@ -27,3 +27,4 @@ python app.py
 
 #or
 flask run
+```
