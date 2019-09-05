@@ -29,4 +29,4 @@ python app.py
 flask run
 ```
 
-![Alt text](/blob/master/static/plots/Screenshot%20from%202019-09-05%2013-04-52.png "ScreenShot")
+![Alt text](static/plots/Screenshot%20from%202019-09-05%2013-04-52.png "ScreenShot")
