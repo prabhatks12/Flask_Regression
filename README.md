@@ -1,5 +1,5 @@
 ## Regression in Flask
-Applying all regression techniques on the csv and telling which one is the best
+Applying all regression techniques on the csv and telling which one is the best based on the accuracy and graph.
 
 ```bash
 
