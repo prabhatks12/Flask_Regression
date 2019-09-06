@@ -6,18 +6,36 @@
 <div class="col-sm-12">
 <div class="col-sm-3"></div>
 <div class="col-sm-6">
-
+{% if paramters[3]==1 and paramters[4]==1 %}
     <table style="width:100%;">
-        
+
         <tr><th>Regression Method</th><th>Accuracy Obtained</th><th>Graph</th><tr>
 
-        <tr><td>Linear Regression</td><td>{{ paramters[0] }}</td><td><img src="{{ url_for('static',filename='plots/linear.png')}}" width="80%" height="40%"></td><tr>
+        <tr><td>Radom Forest Regression</td><td>{{ paramters[0] }}</td><td><img src="{{ url_for('static',filename='plots/linear.png')}}" width="80%" height="40%"
+          alt="Image not found"></td><tr>
 
-        <tr><td>Support Vector Regression</td><td>{{ paramters[1] }}</td><td><img src="{{ url_for('static',filename='plots/random_forest.png')}}" width="80%" height="40%"></td><tr>
+        <tr><td>Support Vector Regression</td><td>{{ paramters[1] }}</td><td><img src="{{ url_for('static',filename='plots/random_forest.png')}}" width="80%" height="40%"
+          alt="Image not found"></td><tr>
 
-        <tr><td>Decision Tree Regression</td><td>{{ paramters[2] }}</td><td><img src="{{ url_for('static',filename='plots/decision_tree.png')}}" width="80%" height="40%"></td><tr>
+        <tr><td>Decision Tree Regression</td><td>{{ paramters[2] }}</td><td><img src="{{ url_for('static',filename='plots/decision_tree.png')}}" width="80%" height="40%"
+          alt="Image not found"></td><tr>
 
     </table>
+{% else %}
+<table style="width:100%;">
+
+    <tr><th>Regression Method</th><th>Accuracy Obtained</th><tr>
+
+    <tr><td>Linear Regression</td><td>{{ paramters[0] }}</td><tr>
+
+    <tr><td>Radom Forest Regression</td><td>{{ paramters[1] }}</td><tr>
+
+    <tr><td>Decision Tree Regression</td><td>{{ paramters[2] }}</td><tr>
+
+</table>
+{% endif %}
+
+<b>Note : </b> Everytime on refresh new training set and test set will be created. Thus accuracy will change.
 
 </div>
 <div class="col-sm-3"></div>

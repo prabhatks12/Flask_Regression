@@ -39,42 +39,55 @@ def result():
         data=pd.read_csv(session['path'])
         data.dropna()
         x,y=data[X],data[Y]
-        #for label Encoder
         x,y=Encoder(x,y,X,Y)
         x_train,x_test,y_train,y_test=train_test_split(x,y)
-        return render_template('result.html',paramters=[linear_regressor(x_train,y_train),random_forest(x_train,y_train),decision_tree(x_train,y_train)])
+        return render_template('result.html',paramters=[linear_regressor(x_train,y_train,x_test,y_test),random_forest(x_train,y_train,x_test,y_test),decision_tree(x_train,y_train,x_test,y_test),len(x_train.columns),len(y_train.columns)])
     else:
         return render_template('parameters.html')
 
-def linear_regressor(x_train,y_train):
+def linear_regressor(x_train,y_train,x_test,y_test):
     regressor=LinearRegression()
-    regressor.fit(x_train,y_train)
-    score=regressor.score(x_train,y_train)
-    plot_graph(x_train,y_train,regressor,"linear")
+    regressor.fit(x_test,y_test)
+    score=regressor.score(x_test,y_test)
+    if(len(x_train.columns)==1 and len(y_train.columns)==1):
+        plot_graph(x_test,y_test,regressor,"linear")
+    else:
+        clear_graph("linear")
     return score
 
-def random_forest(x_train,y_train):
+def random_forest(x_train,y_train,x_test,y_test):
     regressor = RandomForestRegressor(n_estimators = 10, random_state = 0)
     regressor.fit(x_train,y_train)
-    score=regressor.score(x_train,y_train)
-    plot_graph(x_train,y_train,regressor,"random_forest")
+    score=regressor.score(x_test,y_test)
+    if(len(x_train.columns)==1 and len(y_train.columns)==1):
+        plot_graph(x_test,y_test,regressor,"random_forest")
+    else:
+        clear_graph("random_forest")
     return score
 
-def decision_tree(x_train,y_train):
+def decision_tree(x_train,y_train,x_test,y_test):
     regressor = DecisionTreeRegressor(random_state = 0)
     regressor.fit(x_train, y_train)
-    score=regressor.score(x_train,y_train)
-    plot_graph(x_train,y_train,regressor,"decision_tree")
+    score=regressor.score(x_test,y_test)
+    if(len(x_train.columns)==1 and len(y_train.columns)==1):
+        plot_graph(x_test,y_test,regressor,"decision_tree")
+    else:
+        clear_graph("decision_tree")
     return score
 
 
-def plot_graph(x_train,y_train,regressor,name):
+def plot_graph(x_test,y_test,regressor,name):
     plot.clf()
-    plot.scatter(x_train,y_train,color="red")
-    plot.plot(x_train,regressor.predict(x_train),color="blue")
+    plot.scatter(x_test,y_test,color="red")
+    plot.plot(x_test,regressor.predict(x_test),color="blue")
+    plot.title(name)
     if(os.path.exists('static/plots/'+name+'.png')):
         os.remove('static/plots/'+name+'.png')
     plot.savefig('static/plots/'+name+'.png')
+
+def clear_graph(name):
+    if(os.path.exists('static/plots/'+name+'.png')):
+        os.remove('static/plots/'+name+'.png')
 
 def Encoder(x,y,X,Y):
     for i,r in enumerate(x.dtypes):
