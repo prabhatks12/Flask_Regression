@@ -29,4 +29,4 @@ python app.py
 flask run
 ```
 
-![Alt text](screenshot.png "ScreenShot")
+![Alt text](screenshots/single_parameter.png "ScreenShot")
