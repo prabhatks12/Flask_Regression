@@ -1,7 +1,7 @@
 ## Regression in Flask
 Applying `linear regression`,`random forest` and `decision tree` regression on the csv and displaying which one is the best based on the accuracy and graph.`Flask` is used to do this.
 
-#Developers Guideline
+# Developers Guideline
 Type the following command based on your system to create the virtual enviornment in python.
 
 ```bash
@@ -33,10 +33,12 @@ flask run
 ```
 
 #Results
-For single attribute the following result is shown
+For `single` attribute the following result is shown
+
 ![Alt text](screenshots/single_parameter.png "ScreenShot")
 
-For multiple attributes the following result is shown
+For `multiple` attributes the following result is shown
+
 ![Alt text](screenshots/multiple_parameter.png "ScreenShot")
 
 
